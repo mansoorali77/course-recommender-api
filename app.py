@@ -6,7 +6,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = FastAPI(title="Course Recommender API")
 
 # Load trained artifacts
-bundle = joblib.load("artifacts/recommender.joblib")
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "artifacts" / "recommender.joblib"
+
+bundle = joblib.load(MODEL_PATH)
 
 user2idx = bundle["user2idx"]
 idx2item = bundle["idx2item"]
